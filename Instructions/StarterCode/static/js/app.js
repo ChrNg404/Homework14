@@ -1,8 +1,8 @@
 // from data.js
 var tableData = data;
-
 // Let's create the table body first
 var tbody = d3.select("tbody");
+var table = d3.select("#ufo-table");
 
 //log this to the console so we can make sure we're pulling our data
 //console.log(data);
@@ -67,9 +67,12 @@ submit.on("click", function () {
 
     console.log(inputValue);
     //console.log(tableData);
-    console.log(filteredData)
-
     var filteredData = tableData.filter(date => date.datetime === inputValue);
+
+    console.log(filteredData);
+//    filteredData.row(filteredData)
+//        .remove()
+//        .draw();
     //var input, filter, table, tr, td, i, txtValue;
     
     //filter = inputValue.toUpperCase();
@@ -88,25 +91,4 @@ submit.on("click", function () {
  //   }
 });
 
-//function myFunction() {
-//    // Declare variables 
-//    var filter, table, tr, td, i, txtValue;
-//    input = document.getElementById("myInput");
-//    filter = input.value.toUpperCase();
- //   table = document.getElementById("myTable");
- //   tr = table.getElementsByTagName("tr");
-
-    // Loop through all table rows, and hide those who don't match the search query
- //   for (i = 0; i < tr.length; i++) {
- //       td = tr[i].getElementsByTagName("td")[0];
- //       if (td) {
-  //          txtValue = td.textContent || td.innerText;
- //           if (txtValue.toUpperCase().indexOf(filter) > -1) {
- //               tr[i].style.display = "";
- //           } else {
- //               tr[i].style.display = "none";
- //           }
- //       }
- //   }
-//}
 
