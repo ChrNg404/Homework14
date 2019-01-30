@@ -61,6 +61,7 @@ filter.on("click", function () {
     // Then we're selecting the input element and getting the raw HTML
 
     var inputElement = d3.select("#datetime");
+    console.log(inputElement);
 
     //Next we get the value property of the input element
 
@@ -75,11 +76,9 @@ filter.on("click", function () {
     //filter based on input
     var filteredData = tableData.filter(date => date.datetime === inputValue);
 
-    console.log(filteredData);
-
-    filteredData.forEach((report)=> {
+    filteredData.forEach(function (report) {
         var row = tbody.append("tr");
-        Object.entries(report).ForEach(([key, value]) =>{
+        Object.entries(report).forEach(function ([key, value]) {
             var cell = tbody.append("td");
             cell.text(value);
         });
