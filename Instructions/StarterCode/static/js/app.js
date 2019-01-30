@@ -19,11 +19,11 @@ var comments = [];
 
 // let's add code for user input and the button. First let's select the filter button.
 
-var submit = d3.select("#filter-btn");
+//var submit = d3.select("#filter-btn");
 
 //Now we loop through the 'data' and log each object in the data
 
-data.forEach(function(data){
+tableData.forEach(function(data){
     //console.log(report);
     dates.push(data.datetime),
     city.push(data.city),
@@ -41,7 +41,7 @@ data.forEach(function(data){
 
 // Looks like it's working. Alright so now we append the lists to the table. 
 
-data.forEach(function (report) {
+tableData.forEach(function (report) {
     //console.log(report);
     var row = tbody.append("tr");
 
@@ -49,11 +49,12 @@ data.forEach(function (report) {
         console.log(key, value);
         var cell = tbody.append("td");
         cell.text(value);
-    })
+    });
 });
-
+// select filter button
+var filter = d3.select("#filter-btn");
 // Alright let's also build out the button and User input. Now that we've selected the filter button, let's get it to submit stuff.
-submit.on("click", function () {
+filter.on("click", function () {
     //First we're gonna stop the page from refreshing
     d3.event.preventDefault();
 
@@ -67,9 +68,23 @@ submit.on("click", function () {
 
     console.log(inputValue);
     //console.log(tableData);
+
+    //clear table
+    tbody.html("");
+
+    //filter based on input
     var filteredData = tableData.filter(date => date.datetime === inputValue);
 
     console.log(filteredData);
+
+    filteredData.forEach((report)=> {
+        var row = tbody.append("tr");
+        Object.entries(report).ForEach(([key, value]) =>{
+            var cell = tbody.append("td");
+            cell.text(value);
+        });
+    });
+});
 //    filteredData.row(filteredData)
 //        .remove()
 //        .draw();
@@ -89,6 +104,6 @@ submit.on("click", function () {
  //           }
 //        }
  //   }
-});
+
 
 
